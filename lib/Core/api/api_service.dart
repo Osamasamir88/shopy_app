@@ -1,59 +1,30 @@
-// import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
+import 'package:shopy_app/features/auth/data/models/auth_response.dart';
+import 'package:shopy_app/features/auth/data/models/login_request_body.dart';
+import 'package:shopy_app/features/auth/data/models/register_request_body.dart';
 
+// جاهز لاي بروجكت جديد ApiService
+class ApiService {
+  final Dio _dio;
 
-// // جاهز لاي بروجكت جديد ApiService
-// class ApiService {
-//   final Dio _dio;
+  ApiService(this._dio);
 
-//   ApiService(this._dio);
+  // 1. Endpoint التسجيل في Strapi
+  Future<AuthResponse> register(RegisterRequestBody registerRequestBody) async {
+    final response = await _dio.post(
+      '/api/auth/local/register',
+      data: registerRequestBody.toJson(),
+    );
 
-//   // GET Request (Supports both Map and List responses)
-//   Future<dynamic> get({
-//     required String endpoint,
-//     Map<String, dynamic>? queryParameters,
-//   }) async {
-//     final response = await _dio.get(
-//       endpoint,
-//       queryParameters: queryParameters,
-//     );
-//     return response.data;
-//   }
+    return AuthResponse.fromJson(response.data);
+  }
 
-//   // POST Request
-//   Future<dynamic> post({
-//     required String endpoint,
-//     dynamic data,
-//     Map<String, dynamic>? queryParameters,
-//   }) async {
-//     final response = await _dio.post(
-//       endpoint,
-//       data: data,
-//       queryParameters: queryParameters,
-//     );
-//     return response.data;
-//   }
-
-//   // PUT Request
-//   Future<dynamic> put({
-//     required String endpoint,
-//     dynamic data,
-//   }) async {
-//     final response = await _dio.put(
-//       endpoint,
-//       data: data,
-//     );
-//     return response.data;
-//   }
-
-//   // DELETE Request
-//   Future<dynamic> delete({
-//     required String endpoint,
-//     dynamic data,
-//   }) async {
-//     final response = await _dio.delete(
-//       endpoint,
-//       data: data,
-//     );
-//     return response.data;
-//   }
-// }
+  // 2. Endpoint تسجيل الدخول في Strapi
+  Future<AuthResponse> login(LoginRequestBody loginRequestBody) async {
+    final response = await _dio.post(
+      '/api/auth/local',
+      data: loginRequestBody.toJson(),
+    );
+    return AuthResponse.fromJson(response.data);
+  }
+}
