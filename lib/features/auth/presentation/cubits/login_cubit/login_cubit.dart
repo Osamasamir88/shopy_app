@@ -29,7 +29,7 @@ class LoginCubit extends Cubit<LoginState> {
     );
 
     response.fold(
-      (failure) => emit(LoginFailureState(failure.toString())),
+      (failure) => emit(LoginFailureState(failure.errMassage)),
       (authResponse) => emit(LoginSuccessState(authResponse)),
     );
   }
