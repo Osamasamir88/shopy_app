@@ -1,7 +1,11 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shopy_app/Core/routing/app_routes.dart';
 import 'package:shopy_app/Core/utils/app_text_styles.dart';
 import 'package:shopy_app/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
@@ -24,30 +28,34 @@ class LoginViewBody extends StatelessWidget {
               child: BlocConsumer<LoginCubit, LoginState>(
                 listener: (context, state) {
                   if (state is LoginFailureState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.errMessage),
-                        backgroundColor: Colors.red,
-                        duration:const Duration(seconds: 2),
-                      ),
-                    );
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.error,
+                      animType: AnimType.bottomSlide,
+                      title: 'Error ❌',
+                      desc: state.errMessage,
+                      btnOkOnPress: () {},
+                      btnOkColor: Colors.red,
+                    ).show();
                   }
                   if (state is LoginSuccessState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Welcome Back, ${state.authResponse.user.username}',
-                        ),
-                        backgroundColor: Colors.green,
-                        duration: const Duration(seconds: 2),
-                      ),
-                    );
-                    // تأخير الانتقال لحين عرض الـ SnackBar
-                    Future.delayed(const Duration(seconds: 3), () {
-                      if (context.mounted) {
-                        context.pushReplacement(AppRoutes.homeView);
-                      }
-                    });
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.success,
+                      animType: AnimType.scale,
+                      title: 'Success 🎉',
+                      desc: 'Welcome Back, ${state.authResponse.user.username}',
+                      autoHide: const Duration(
+                        seconds: 2,
+                      ), // يقفل أوتوماتيك بعد ثانتين
+                      onDismissCallback: (type) {
+                        if (context.mounted) {
+                          context.pushReplacement(
+                            AppRoutes.homeView,
+                          ); // التنقل بعد إغلاق الديالوج
+                        }
+                      },
+                    ).show();
                   }
                 },
                 builder: (context, state) {

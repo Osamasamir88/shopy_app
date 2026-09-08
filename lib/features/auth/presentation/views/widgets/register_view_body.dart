@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,30 +26,34 @@ class RegisterViewBody extends StatelessWidget {
               child: BlocConsumer<RegisterCubit, RegisterState>(
                 listener: (context, state) {
                   if (state is RegisterFailureState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.errMessage),
-                        backgroundColor: Colors.red,
-                        duration:const Duration(seconds: 2),
-                      ),
-                    );
+                   AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.error,
+                      animType: AnimType.bottomSlide,
+                      title: 'Error ❌',
+                      desc: state.errMessage,
+                      btnOkOnPress: () {},
+                      btnOkColor: Colors.red,
+                    ).show();
                   }
                   if (state is RegisterSuccessState) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Account created successfully! Welcome, ${state.authResponse.user.username}',
-                        ),
-                        backgroundColor: Colors.green,
-                        duration:const Duration(seconds: 2),
-                      ),
-                    );
-                    // تأخير الانتقال لحين عرض الـ SnackBar
-                    Future.delayed(const Duration(seconds: 3), () {
-                      if (context.mounted) {
-                        context.pushReplacement(AppRoutes.homeView);
-                      }
-                    });
+                    AwesomeDialog(
+                      context: context,
+                      dialogType: DialogType.success,
+                      animType: AnimType.scale,
+                      title: 'Success 🎉',
+                      desc: 'Account created successfully! Welcome, ${state.authResponse.user.username} 🎉',
+                      autoHide: const Duration(
+                        seconds: 2,
+                      ), // يقفل أوتوماتيك بعد ثانتين
+                      onDismissCallback: (type) {
+                        if (context.mounted) {
+                          context.pushReplacement(
+                            AppRoutes.homeView,
+                          ); // التنقل بعد إغلاق الديالوج
+                        }
+                      },
+                    ).show();
                   }
                 },
                 builder: (context, state) {
