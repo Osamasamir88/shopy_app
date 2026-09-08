@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopy_app/Core/di/service_locator.dart';
 import 'package:shopy_app/Core/routing/router_generation_config.dart';
 import 'package:shopy_app/Core/theme/app_theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  setupServiceLocator();
   runApp(const MyApp());
 }
 

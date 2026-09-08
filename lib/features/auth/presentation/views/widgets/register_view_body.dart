@@ -120,7 +120,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
                       },
                     ),
                     SizedBox(height: 55.h),
-                    Center(child: CustomElevatedButton(text: 'Create Account',onPressed: () {
+                    Center(child: CustomElevatedButton(child: Text('Create Account', style: AppTextStyles.font14Medium),onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         // TODO: Call Register Cubit here
                       }

@@ -15,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future<void> emitLoginState() async {
+  Future<void> login() async {
     // قبل ما نعمل تسجيل دخول نشيك الاول هل اليوزر دخل البيانات بشكل صحيح ولا لا
     if (!loginFormKey.currentState!.validate()) return;
 

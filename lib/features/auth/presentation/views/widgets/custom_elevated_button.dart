@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopy_app/Core/utils/app_colors.dart';
-import 'package:shopy_app/Core/utils/app_text_styles.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-  const CustomElevatedButton({super.key, required this.text, this.onPressed});
-  final String text;
+  const CustomElevatedButton({super.key,this.onPressed, required this.child});
+  final Widget child;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class CustomElevatedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
         ),
       ),
-      child: Text(text, style: AppTextStyles.font14Medium),
+      child: child,
     );
   }
 }
