@@ -14,8 +14,9 @@ class RegisterCubit extends Cubit<RegisterState> {
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  Future<void> emitRegisterState() async {
+  Future<void> register() async {
     if (!registerFormKey.currentState!.validate()) return;
 
     emit(RegisterLoadingState());
@@ -39,6 +40,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     usernameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     return super.close();
   }
 }

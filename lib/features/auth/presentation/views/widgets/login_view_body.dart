@@ -28,6 +28,7 @@ class LoginViewBody extends StatelessWidget {
                       SnackBar(
                         content: Text(state.errMessage),
                         backgroundColor: Colors.red,
+                        duration:const Duration(seconds: 2),
                       ),
                     );
                   }
@@ -38,9 +39,15 @@ class LoginViewBody extends StatelessWidget {
                           'Welcome Back, ${state.authResponse.user.username}',
                         ),
                         backgroundColor: Colors.green,
+                        duration: const Duration(seconds: 2),
                       ),
                     );
-                    context.pushReplacement(AppRoutes.homeView);
+                    // تأخير الانتقال لحين عرض الـ SnackBar
+                    Future.delayed(const Duration(seconds: 3), () {
+                      if (context.mounted) {
+                        context.pushReplacement(AppRoutes.homeView);
+                      }
+                    });
                   }
                 },
                 builder: (context, state) {
