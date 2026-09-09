@@ -28,4 +28,14 @@ abstract class AppTextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.white,
   );
+  static TextStyle font12Medium = GoogleFonts.dmSans(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.grey500,
+  );
+  static TextStyle font16semiBold = GoogleFonts.dmSans(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.black,
+  );
 }

@@ -6,6 +6,7 @@ import 'package:shopy_app/features/home/presentation/views/widgets/categories_li
 import 'package:shopy_app/features/home/presentation/views/widgets/category_name.dart';
 import 'package:shopy_app/features/home/presentation/views/widgets/custom_search_bar.dart';
 import 'package:shopy_app/features/home/presentation/views/widgets/filter_icon.dart';
+import 'package:shopy_app/features/home/presentation/views/widgets/product_item.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -30,6 +31,8 @@ class HomeViewBody extends StatelessWidget {
 
             SizedBox(height: 16.h),
             CategoriesListView(),
+            SizedBox(height: 24.h),
+            ProductItem(),
           ],
         ),
       ),
