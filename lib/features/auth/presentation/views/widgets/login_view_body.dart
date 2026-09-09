@@ -1,11 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:lottie/lottie.dart';
 import 'package:shopy_app/Core/routing/app_routes.dart';
 import 'package:shopy_app/Core/utils/app_text_styles.dart';
 import 'package:shopy_app/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
