@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shopy_app/Core/routing/app_routes.dart';
 import 'package:shopy_app/Core/utils/app_text_styles.dart';
 
 class ProductItem extends StatefulWidget {
@@ -16,6 +18,7 @@ class _ProductItemState extends State<ProductItem> {
     return GestureDetector(
       onTap: () {
         // هنا هنحط لوجيك الانتقال لشاشه product details
+        context.push(AppRoutes.productDetailsView);
       },
       child: SizedBox(
         width: 161.w,
@@ -33,6 +36,7 @@ class _ProductItemState extends State<ProductItem> {
             SizedBox(height: 8.h),
             Text('Fit Polo T Shirt', style: AppTextStyles.font16semiBold),
             SizedBox(height: 3.h),
+            // price & add to fav
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -45,7 +49,7 @@ class _ProductItemState extends State<ProductItem> {
                     // هنا هننادي الـ WishlistCubit لاحقاً لربطها بالـ API
                   },
                   child: AnimatedScale(
-                    scale: isFavorite ? 1.1 : 1.0,
+                    scale: isFavorite ? 1.2 : 1.0,
                     duration: const Duration(seconds: 1),
                     curve: Curves.easeInExpo,
                     child: Icon(
