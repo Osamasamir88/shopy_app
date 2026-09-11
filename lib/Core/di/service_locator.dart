@@ -5,6 +5,8 @@ import 'package:shopy_app/features/auth/data/repos/auth_repo.dart';
 import 'package:shopy_app/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:shopy_app/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:shopy_app/features/auth/presentation/cubits/register_cubit/register_cubit.dart';
+import 'package:shopy_app/features/product_details/data/repos/home_repo.dart';
+import 'package:shopy_app/features/product_details/data/repos/home_repo_impl.dart';
 
 final getIt = GetIt.instance;
 
@@ -26,9 +28,13 @@ setupServiceLocator() {
   });
   getIt.registerLazySingleton<ApiService>(() => ApiService(getIt<Dio>()));
 
-  // 2. Auth Repo
+  // 2. Auth , Home Repo
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<ApiService>()),
+  );
+
+  getIt.registerLazySingleton<HomeRepo>(
+    () => HomeRepoImpl(getIt<ApiService>()),
   );
 
   // 3. Cubits

@@ -27,4 +27,9 @@ class ApiService {
     );
     return AuthResponse.fromJson(response.data);
   }
+
+  Future<Map<String, dynamic>> get({required String endpoint}) async {
+  var response = await _dio.get('/$endpoint');
+  return response.data;
+}
 }
