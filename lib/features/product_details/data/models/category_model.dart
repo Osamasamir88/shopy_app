@@ -10,7 +10,9 @@ class CategoryModel {
   factory CategoryModel.fromJson(Map<String, dynamic> json) {
     final attributes = json['attributes'] ?? json;
     return CategoryModel(
-      id: json['id'] ?? 0,
+      id: json['id'] is int 
+    ? json['id'] 
+    : int.tryParse(json['id'].toString()) ?? 0,
       name: attributes['name'] ?? attributes['title'] ?? '',
     );
   }

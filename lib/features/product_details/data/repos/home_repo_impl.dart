@@ -14,7 +14,7 @@ class HomeRepoImpl implements HomeRepo {
   @override
   Future<Either<Failure, List<CategoryModel>>> getCategories() async {
     try {
-    final response = await apiService.get(endpoint: 'categories');
+    final response = await apiService.get(endpoint: '/api/categories');
     final List data = response['data'];
 
     final categories = data.map((e) => CategoryModel.fromJson(e)).toList();
@@ -35,7 +35,7 @@ class HomeRepoImpl implements HomeRepo {
     String? searchQuery,
   }) async {
     try {
-    String endpoint = 'products?populate=*';
+    String endpoint = '/api/products?populate=*';
 
     // إضافة الفلترة لو اخترنا Category معين مش 'All'
     if (categoryName != null && categoryName != 'All') {

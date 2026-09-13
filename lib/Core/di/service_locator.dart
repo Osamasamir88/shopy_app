@@ -18,7 +18,7 @@ setupServiceLocator() {
         // ⚠️ مهم جداً اختيار الـ IP المناسب:
         // - محاكي أندرويد (Android Emulator): http://10.0.2.2:1337
         // - جهاز حقيقي (Physical Device): http://192.168.x.x:1337 (IP جهاز الكمبيوتر)
-        baseUrl: 'http://10.0.2.2:1337',
+        baseUrl: 'http://192.168.1.10:1337',
         connectTimeout: const Duration(seconds: 10),
         receiveTimeout: const Duration(seconds: 10),
         headers: {'Content-Type': 'application/json'},
