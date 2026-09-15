@@ -3,6 +3,7 @@ import 'package:shopy_app/Core/routing/app_routes.dart';
 import 'package:shopy_app/features/auth/presentation/views/login_view.dart';
 import 'package:shopy_app/features/auth/presentation/views/register_view.dart';
 import 'package:shopy_app/features/home/presentation/views/home_view.dart';
+import 'package:shopy_app/features/product_details/data/models/product_model.dart';
 import 'package:shopy_app/features/product_details/presentation/views/product_details_view.dart';
 
 class RouterGenerationConfig {
@@ -27,19 +28,22 @@ class RouterGenerationConfig {
       GoRoute(
         path: AppRoutes.productDetailsView,
         name: AppRoutes.productDetailsView,
-        builder: (context, state) => ProductDetailsView(),
+        builder: (context, state) {
+          final  product = state.extra as ProductModel;
+          return ProductDetailsView(productModel: product);
+        },
       ),
       // GoRoute(
       //   path: AppRoutes.splashView,
       //   name: AppRoutes.splashView,
       //   builder: (context, state) => Scaffold(),
       // ),
-    //   ),
-    //   GoRoute(
-    //     path: AppRoutes.searchView,
-    //     name: AppRoutes.searchView,
-    //     builder: (context, state) => SearchView(),
-    //   ),
+      //   ),
+      //   GoRoute(
+      //     path: AppRoutes.searchView,
+      //     name: AppRoutes.searchView,
+      //     builder: (context, state) => SearchView(),
+      //   ),
     ],
   );
 }

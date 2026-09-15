@@ -22,30 +22,28 @@ class _ProductItemState extends State<ProductItem> {
     return GestureDetector(
       onTap: () {
         // هنا هنحط لوجيك الانتقال لشاشه product details
-        context.push(AppRoutes.productDetailsView);
+        context.push(AppRoutes.productDetailsView,extra: widget.productModel);
       },
       child: SizedBox(
         width: 161.w,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                imageUrl:
-                    widget.productModel?.mainImage ??
-                    'https://via.placeholder.com/150',
-                fit: BoxFit.fitWidth,
-                placeholder: (context, url) => const SizedBox.shrink(),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-                width: 161.w,
-                height: 174.h,
+            Hero(
+              tag: widget.productModel?.id.toString() ?? 'default_id',
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: CachedNetworkImage(
+                  imageUrl:
+                      widget.productModel?.mainImage ??
+                      'https://via.placeholder.com/150',
+                  fit: BoxFit.fitWidth,
+                  placeholder: (context, url) => const SizedBox.shrink(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                  width: 161.w,
+                  height: 174.h,
+                ),
               ),
-              // Image.asset(
-              //   widget.productModel!.mainImage,
-              //   width: 161.w,
-              //   height: 174.h,
-              // ),
             ),
             SizedBox(height: 8.h),
             Text(
